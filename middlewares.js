@@ -72,37 +72,51 @@ const PORT = process.env.PORT || 8000;
 
 
 
-const middleFunction1 = (req, res, next) => {
-  const skip = req.query.skip ?? false
+// const middleFunction1 = (req, res, next) => {
+//   const skip = req.query.skip ?? false
 
-  req.customData = 'Custom Data With Request'
-  res.customDataWithResponse = 'Custom Data With Response'
+//   req.customData = 'Custom Data With Request'
+//   res.customDataWithResponse = 'Custom Data With Response'
 
-  if (skip) {
+//   if (skip) {
       
-      // Bir sonraki route'a (bağımsız fonksiyona) git:
-      console.log("next-route çalıştı")
-      next('route')
+//       // Bir sonraki route'a (bağımsız fonksiyona) git:
+//       console.log("next-route çalıştı")
+//       next('route')
 
-  } else {
-      // Bir sonraki callback fonksiyona git:
-      console.log("next çalıştı")
-      next()
+//   } else {
+//       // Bir sonraki callback fonksiyona git:
+//       console.log("next çalıştı")
+//       next()
 
-  }
-};
+//   }
+// };
 
-app.use(middleFunction1)
-app.use("/", middleFunction1)
+// app.use(middleFunction1)
+// app.use("/", middleFunction1)
 
-app.get("/",(req, res) => {
+// app.get("/",(req, res) => {
+//   res.send({
+   
+//     message: "1. route",
+//   });
+// });
+
+
+const [middleFunction1,middleFunction2]=require("./middlewares/")
+
+
+// app.use(middleFunction1,middleFunction2)
+
+// const middleFunctions = require("./middlewares/")
+// app.use(middleFunctions)
+
+app.use(require("./middlewares/"))
+app.get("/*",(req, res) => {
   res.send({
    
-    message: "1. route",
+  message:"welcome to home"
   });
 });
-
-
-
 
 app.listen(PORT, () => console.log("Running: http://127.0.0.1:" + PORT));

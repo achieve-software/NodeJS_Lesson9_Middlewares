@@ -6,7 +6,10 @@ const app = express();
 require("dotenv").config();
 const PORT = process.env.PORT || 8000;
 
-// app.get("/", (req, res, next) => {
+
+
+
+//  app.get("/", (req, res, next) => {
 
 //     req.customData="customData"
 //     res.customDataWithResponse="Custom data With response"
